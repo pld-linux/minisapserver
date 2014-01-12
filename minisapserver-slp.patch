@@ -1,0 +1,25 @@
+--- minisapserver-0.3.8/slp.cpp.orig	2009-03-04 16:09:21.000000000 +0100
++++ minisapserver-0.3.8/slp.cpp	2014-01-12 19:49:56.345401282 +0100
+@@ -30,6 +30,8 @@
+ #include <arpa/inet.h>
+ #include <stdlib.h>
+ #include <stdio.h>
++#include <cstring>
++#include <sstream>
+ #include <string>
+ #include <vector>
+ 
+@@ -69,7 +71,12 @@
+     if (address.find(':') != string::npos)
+         address = "[" + address + "]";
+ 
+-    string url = "udp:@" + address + ":" + p->GetPort();
++    string url = "udp:@" + address + ":";
++    {
++	ostringstream os;
++	os << p->GetPort();
++	url += os.str();
++    }
+ 
+ #if 0
+     /* This code is for the new naming scheme after vlc 0.7.0 */
