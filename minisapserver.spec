@@ -29,7 +29,7 @@ następnie np. przez odtwarzacz multimedialny VLC Media Player.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %configure \
